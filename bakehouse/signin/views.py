@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate, logout, login
 
 # Create your views here.
 
+
+# login 
 def index(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -26,6 +28,7 @@ def index(request):
     return render(request, 'index.html')
 
 
+# signup 
 def signup(request):
     context = {}
 
@@ -43,16 +46,10 @@ def signup(request):
             messages.success(request, "Account has been created for " + name)
             return render(request, 'index.html')
 
-
         else:
             message = "the form is invalid check the username or password!!!"
             context = {'message' : message}
             return render(request, 'signup.html', context)
-
-
-
-
-
 
     form = CustomUserCreationForm()
     context = {'form' : form}
@@ -60,26 +57,6 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 
-
-def form(request):
-    print("formss")
-
-    if request.method == "POST":
-        print("posted")
-        details = UserCreationForm(request.POST)
-
-        if details.is_valid():
-            details.save()
-            print("saved")
-            return HttpResponse("data submitted successfully")
-
-    form = UserCreationForm
-
-
-    context = {'form' : form}
-
-    return render(request, 'form.html', context)
-
-
+# home 
 def home(request):
     return render(request, 'home.html')
