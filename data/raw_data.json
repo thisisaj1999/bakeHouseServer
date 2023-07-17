@@ -1,0 +1,458 @@
+{
+  "Burger": {
+    "veg": [
+      {
+        "_id": "01_veg_crispy_burger",
+        "title": "Veg Crispy_Burger",
+        "desc": "A veg crispy burger is a delicious and satisfying sandwich made primarily with vegetarian ingredients. It typically consists of a flavorful and crispy vegetable patty served inside a soft burger bun.",
+        "price": 100,
+        "rating": 9
+      },
+      {
+        "_id": "02_classic_veggie_burger",
+        "title": "Classic Veggie Burger",
+        "description": "A delicious patty made from fresh vegetables and spices, served with lettuce, tomato, and special sauce on a whole wheat bun.",
+        "price": 99,
+        "rating": 9
+      },
+      {
+        "_id": "03_spicy_black_bean_burger",
+        "title": "Spicy Black Bean Burger",
+        "description": "A zesty black bean patty with a kick of spices, topped with jalapenos, guacamole, and chipotle mayo on a sesame seed bun.",
+        "price": 109,
+        "rating": 9
+      },
+      {
+        "_id": "04_mushroom_swiss_burger",
+        "title": "Mushroom Swiss Burger",
+        "description": "A juicy mushroom and Swiss cheese patty served with caramelized onions, lettuce, and garlic aioli on a brioche bun.",
+        "price": 119,
+        "rating": 9
+      },
+      {
+        "_id": "05_barbeque_jackfruit_burger",
+        "title": "BBQ Jackfruit Burger",
+        "description": "Tender pulled jackfruit in a tangy BBQ sauce, topped with coleslaw and crispy onion straws on a pretzel bun.",
+        "price": 199,
+        "rating": 9
+      }
+    ],
+    "non_veg": [
+      {
+        "_id": "01_classic_non_veg_burger",
+        "title": "Classic Non Veg Burger",
+        "description": "A mouthwatering beef patty topped with cheddar cheese, crispy bacon, lettuce, tomato, and mayo on a toasted bun.",
+        "price": 129,
+        "rating": 9
+      },
+      {
+        "_id": "02_spicy_chicken_burger",
+        "title": "Spicy Chicken Burger",
+        "description": "A fiery grilled chicken patty with spicy sauce, jalapenos, pickles, and pepper jack cheese on a sesame seed bun.",
+        "price": 179,
+        "rating": 8
+      },
+      {
+        "_id": "03_double_decker_burger",
+        "title": "Double Decker Burger",
+        "description": "Two juicy beef patties layered with American cheese, lettuce, tomato, onions, and special sauce on a toasted bun.",
+        "price": 199,
+        "rating": 9
+      },
+      {
+        "_id": "3_bbq_pork_burger",
+        "title": "BBQ Pork Burger",
+        "description": "Slow-cooked pulled pork smothered in tangy BBQ sauce, topped with coleslaw and crispy fried onions on a brioche bun.",
+        "price": 250,
+        "rating": 7
+      },
+      {
+        "_id": "05_turkey_avocado_burger",
+        "title": "Turkey Avocado Burger",
+        "description": "A flavorful turkey patty with avocado slices, Swiss cheese, lettuce, and garlic aioli on a whole wheat bun.",
+        "price": 199,
+        "rating": 8
+      }
+    ]
+  },
+  "Rolls": {
+    "veg": [
+      {
+        "_id": "01_paneer_kathi_roll",
+        "title": "Paneer Kathi Roll",
+        "description": "Grilled paneer tikka wrapped in a soft roti with mint chutney and onions.",
+        "price": 99,
+        "rating": 6
+      },
+      {
+        "_id": "02_aloo_tikki_roll",
+        "title": "Aloo Tikki Roll",
+        "description": "Crispy potato patties with tangy chutneys, rolled in a paratha.",
+        "price": 89,
+        "rating": 8
+      },
+      {
+        "_id": "03_veggie_wrap",
+        "title": "Veggie Wrap",
+        "description": "Assorted vegetables, lettuce, and mayo wrapped in a whole wheat tortilla.",
+        "price": 89,
+        "rating": 9
+      },
+      {
+        "_id": "04_soya_chap_roll",
+        "title": "Soya Chap Roll",
+        "description": "Marinated and grilled soya chaap rolled in a paratha with onions and mint chutney.",
+        "price": 109,
+        "rating": 4
+      },
+      {
+        "_id": "05_corn_cheese_roll",
+        "title": "Corn Cheese Roll",
+        "description": "Creamy corn and cheese filling wrapped in a crispy roll with a tangy sauce.",
+        "price": 109,
+        "rating": 2
+      }
+    ],
+    "non_veg": [
+      {
+        "_id": "01_chicken_tikka_roll",
+        "title": "Chicken Tikka Roll",
+        "description": "Tender chicken tikka wrapped in a soft roti with mint chutney and onions.",
+        "price": 129,
+        "rating": 7
+      },
+      {
+        "_id": "02_egg_roll",
+        "title": "Egg Roll",
+        "description": "Flavorful scrambled eggs with onions, peppers, and spices, wrapped in a paratha.",
+        "price": 99,
+        "rating": 9
+      },
+      {
+        "_id": "03_mutton_keema_roll",
+        "title": "Mutton Keema Roll",
+        "description": "Spicy minced mutton cooked with aromatic spices, rolled in a paratha with onions and mint chutney.",
+        "price": 139,
+        "rating": 8
+      },
+      {
+        "_id": "04_fish_curry_roll",
+        "title": "Fish Curry Roll",
+        "description": "Tangy fish curry wrapped in a soft roti with pickled onions and green chutney.",
+        "price": 119,
+        "rating": 7
+      },
+      {
+        "_id": "05_butter_chicken_roll",
+        "title": "Butter Chicken Roll",
+        "description": "Tender chicken cooked in a rich and creamy butter chicken sauce, wrapped in a paratha.",
+        "price": 149,
+        "rating": 9
+      }
+    ]
+  },
+  "Momos": {
+    "veg": [
+      {
+        "_id": "01_steamed_veg_momos",
+        "title": "Steamed Veg Momos",
+        "description": "Steamed dumplings filled with a mix of finely chopped vegetables, served with spicy sauce.",
+        "price": 79,
+        "rating": 8
+      },
+      {
+        "_id": "02_friedveg_momos",
+        "title": "Fried Veg Momos",
+        "description": "Crispy fried dumplings stuffed with a vegetable filling, served with sweet chili sauce.",
+        "price": 89,
+        "rating": 8
+      },
+      {
+        "_id": "03_tandoori_veg_momos",
+        "title": "Tandoori Veg Momos",
+        "description": "Marinated and roasted vegetable momos with a smoky flavor, served with mint chutney.",
+        "price": 99,
+        "rating": 7
+      },
+      {
+        "_id": "04_spinach_cheese_momos",
+        "title": "Spinach Cheese Momos",
+        "description": "Steamed dumplings filled with spinach and cheese, served with tangy tomato sauce.",
+        "price": 109,
+        "rating": 5
+      },
+      {
+        "_id": "05_corn_mushroom_momos",
+        "title": "Corn Mushroom Momos",
+        "description": "Delicious dumplings filled with corn and mushroom, served with spicy sesame sauce.",
+        "price": 109,
+        "rating": 7
+      }
+    ],
+    "non_veg": [
+      {
+        "_id": "01_chicken_steamed_momos",
+        "title": "Chicken Steamed Momos",
+        "description": "Steamed dumplings filled with minced chicken, served with spicy tomato chutney.",
+        "price": 89,
+        "rating": 8
+      },
+      {
+        "_id": "02_chicken_fried_momos",
+        "title": "Chicken Fried Momos",
+        "description": "Crispy fried dumplings stuffed with chicken filling, served with tangy soy sauce.",
+        "price": 109,
+        "rating": 9
+      },
+      {
+        "_id": "03_mutton_momos",
+        "title": "Mutton Momos",
+        "description": "Delicious dumplings filled with minced mutton, served with spicy sesame sauce.",
+        "price": 99,
+        "rating": 8
+      },
+      {
+        "_id": "04_fish_momos",
+        "title": "Fish Momos",
+        "description": "Steamed dumplings filled with fish and spices, served with spicy garlic sauce.",
+        "price": 109,
+        "rating": 7
+      },
+      {
+        "_id": "05_prawn_momos",
+        "title": "Prawn Momos",
+        "description": "Delectable dumplings filled with prawns and herbs, served with tangy chili sauce.",
+        "price": 129,
+        "rating": 4
+      }
+    ]
+  },
+  "Noodles": {
+    "veg": [
+      {
+        "_id": "01_veg_hakka_noodles",
+        "title": "Veg Hakka Noodles",
+        "description": "Stir-fried noodles with assorted vegetables in a tangy soy-based sauce.",
+        "price": 89,
+        "rating": 9
+      },
+      {
+        "_id": "02_paneer_noodles",
+        "title": "Paneer Noodles",
+        "description": "Soft noodles tossed with cubes of paneer, vegetables, and aromatic spices",
+        "price": 99,
+        "rating": 8
+      },
+      {
+        "_id": "03_veg_schezwan_noodles",
+        "title": "Veg Schezwan Noodles",
+        "description": "Spicy noodles cooked with Schezwan sauce, assorted vegetables, and garlic",
+        "price": 99,
+        "rating": 8
+      },
+      {
+        "_id": "03_veg_thai_noodles",
+        "title": "Veg Thai Noodles",
+        "description": "A flavorful combination of Thai noodles, vegetables, and exotic spices.",
+        "price": 109,
+        "rating": 7
+      },
+      {
+        "_id": "05_veg_singapore_noodles",
+        "title": "Veg Singapore Noodles",
+        "description": "Vermicelli noodles stir-fried with vegetables, curry powder, and soy sauce",
+        "price": 129,
+        "rating": 7
+      }
+    ],
+    "non_veg": [
+      {
+        "_id": "01_chicken_hakka_noodles",
+        "title": "Chicken Hakka Noodles",
+        "description": "Tossed noodles with succulent chicken, vegetables, and a flavorful sauce.",
+        "price": 10.99,
+        "rating": 8
+      },
+      {
+        "_id": "02_egg_noodles",
+        "title": "Egg Noodles",
+        "description": "Stir-fried noodles with scrambled eggs, vegetables, and a touch of soy sauce.",
+        "price": 89,
+        "rating": 6
+      },
+      {
+        "_id": "03_prawn_noodles",
+        "title": "Prawn Noodles",
+        "description": "Delicious noodles stir-fried with prawns, vegetables, and aromatic spices.",
+        "price": 149,
+        "rating": 9
+      },
+      {
+        "_id": "04_chicken_singapore_noodles",
+        "title": "Chicken Singapore Noodles",
+        "description": "Vermicelli noodles stir-fried with chicken, vegetables, and a blend of sauces.",
+        "price": 139,
+        "rating": 8
+      },
+      {
+        "_id": "05_mutton_noodles",
+        "title": "Mutton Noodles",
+        "description": "Tender mutton pieces cooked with noodles, vegetables, and aromatic spices.",
+        "price": 149,
+        "rating": 8
+      }
+    ]
+  },
+  "Pizza": {
+    "veg": [
+      {
+        "_id": "01_margherita_pizza",
+        "title": "Margherita Pizza",
+        "description": "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil leaves.",
+        "price": 189,
+        "rating": 8
+      },
+      {
+        "_id": "02_vegetable_delight_pizza",
+        "title": "Vegetable Delight Pizza",
+        "description": "Assorted vegetables, olives, mushrooms, and cheese on a thin crust with tomato sauce.",
+        "price": 219,
+        "rating": 8
+      },
+      {
+        "_id": "03_paneer_tikka_pizza",
+        "title": "Paneer Tikka Pizza",
+        "description": "Spicy paneer tikka, onions, and bell peppers topped with cheese on a crispy crust.",
+        "price": 259,
+        "rating": 8
+      },
+      {
+        "_id": "04_cheese_corn_pizza",
+        "title": "Cheese Corn Pizza",
+        "description": "A delectable combination of cheese, sweet corn, and herbs on a cheesy base.",
+        "price": 249,
+        "rating": 6
+      },
+      {
+        "_id": "05_mushroom_quattro_formaggi_pizza",
+        "title": "Mushroom Quattro Formaggi Pizza",
+        "description": "Four cheese pizza topped with mushrooms, garlic, and a hint of truffle oil.",
+        "price": 299,
+        "rating": 5
+      }
+    ],
+    "non_veg": [
+      {
+        "_id": "01_pepperoni_pizza",
+        "title": "Pepperoni Pizza",
+        "description": "Pizza topped with spicy pepperoni slices, tomato sauce, and melted cheese.",
+        "price": 299,
+        "rating": 7
+      },
+      {
+        "_id": "02_chicken_tikka_pizza",
+        "title": "Chicken Tikka Pizza",
+        "description": "Tandoori chicken tikka, onions, and bell peppers topped with cheese on a crispy crust.",
+        "price": 339,
+        "rating": 9
+      },
+      {
+        "_id": "03_bbq_chicken_pizza",
+        "title": "BBQ Chicken Pizza",
+        "description": "Savory chicken pieces, onions, BBQ sauce, and cheese on a crispy pizza crust.",
+        "price": 359,
+        "rating": 9
+      },
+      {
+        "_id": "04_meat_lovers_pizza",
+        "title": "Meat Lovers Pizza",
+        "description": "Loaded with a variety of meats like chicken, bacon, sausage, and ham on a cheese-filled crust.",
+        "price": 379,
+        "rating": 5
+      },
+      {
+        "_id": "05_seafood_delight_pizza",
+        "title": "Seafood Delight Pizza",
+        "description": "A scrumptious combination of shrimp, squid, crab, and bell peppers on a cheesy base.",
+        "price": 399,
+        "rating": 2
+      }
+    ]
+  },
+  "Biryani": {
+    "veg": [
+      {
+        "_id": "01_vegetable_biryani",
+        "title": "Vegetable Biryani",
+        "description": "Fragrant rice cooked with mixed vegetables, aromatic spices, and garnished with fried onions.",
+        "price": 250,
+        "rating": 8
+      },
+      {
+        "_id": "02_paneer_biryani",
+        "title": "Paneer Biryani",
+        "description": "Basmati rice layered with succulent paneer pieces, spices, and saffron-infused milk.",
+        "price": 300,
+        "rating": 8
+      },
+      {
+        "_id": "03_hyderabadi_veg_biryani",
+        "title": "Hyderabadi Veg Biryani",
+        "description": "A traditional Hyderabadi delicacy with fragrant rice, mixed vegetables, and exotic spices.",
+        "price": 350,
+        "rating": 8
+      },
+      {
+        "_id": "04_mushroom_biryani",
+        "title": "Mushroom Biryani",
+        "description": "Flavorful rice cooked with mushrooms, spices, and a blend of aromatic herbs.",
+        "price": 280,
+        "rating": 8
+      },
+      {
+        "_id": "05_kashmiri_veg_biryani",
+        "title": "Kashmiri Veg Biryani",
+        "description": "A delectable rice dish cooked with a variety of vegetables, nuts, and aromatic spices.",
+        "price": 320,
+        "rating": 8
+      }
+    ],
+    "non_veg": [
+      {
+        "_id": "01_chicken_biryani",
+        "title": "Chicken_Biryani",
+        "description": "Basmati rice cooked with tender chicken pieces, aromatic spices, and garnished with fried onions.",
+        "price": 350,
+        "rating": 8
+      },
+      {
+        "_id": "02_mutton_biryani",
+        "title": "Mutton Biryani",
+        "description": "Flavorful rice cooked with succulent mutton pieces, spices, and a blend of aromatic herbs.",
+        "price": 400,
+        "rating": 8
+      },
+      {
+        "_id": "03_hyderabadi_chicken_biryani",
+        "title": "Hyderabadi_Chicken_Biryani",
+        "description": "A classic Hyderabadi specialty with basmati rice, chicken, and a rich blend of spices.",
+        "price": 380,
+        "rating": 9
+      },
+      {
+        "_id": "04_egg_biryani",
+        "title": "Egg Biryani",
+        "description": "Fragrant rice cooked with boiled eggs, spices, and garnished with fried onions.",
+        "price": 320,
+        "rating": 8
+      },
+      {
+        "_id": "05_fish_biryani",
+        "title": "Fish Biryani",
+        "description": "Delicious rice cooked with marinated fish, spices, and a special blend of masalas.",
+        "price": 420,
+        "rating": 8
+      }
+    ]
+  }
+}
