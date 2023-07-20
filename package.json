@@ -2,10 +2,13 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "start": "nodemon src/server.js",
     "server": "nodemon src/server"
+  },
+  "engines": {
+    "node": ">=14.20.1"
   },
   "keywords": [],
   "author": "",
