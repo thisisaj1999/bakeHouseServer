@@ -5,8 +5,9 @@ const passport = require('passport');
 const {
     httpGetLogin,
     httpPostLogin,
-    httpPostLogout,
+    httpGetLogout,
     httpGetSignin,
+    httpPostGoogleLogin,
     httpPostSignin,
     verifyJwtToken,
     httpPostProfile
@@ -14,12 +15,27 @@ const {
 
 
 // login route
-authRouter.get('/login', httpGetLogin); 
+authRouter.get('/login', httpGetLogin);
 authRouter.post('/login', passport.authenticate("local"), httpPostLogin);
-authRouter.post('/logout', httpPostLogout);
+authRouter.get('/logout', httpGetLogout);
 
 // profile route
 authRouter.post('/profile', verifyJwtToken, httpPostProfile)
+
+authRouter.get('/google', passport.authenticate('google', {
+    scope: ['email'],
+}),httpPostGoogleLogin)
+
+authRouter.get('/google/callback',
+    passport.authenticate('google', {
+        failureRedirect: '/failure',
+        successRedirect: '/secret',
+        session: true,
+    }),
+    (req, res) => {
+        console.log("google called us back");
+    }
+);
 
 // signin route
 authRouter.get('/signin', httpGetSignin);

@@ -12,10 +12,12 @@ function httpGetLogin(req, res) {
 async function httpPostLogin(req, res) {
     try {
         const user = req.user
-        console.log(user);
         jwt.sign({ user },secretKey,{expiresIn:'300s'},(err,token)=>{
             if(err) return res.status(400).json({"error": err });
-            console.log(req.isAuthenticated());
+            res.cookie("jwtToken",token,{
+                httpOnly:true,
+                secure : process.env.COOKIE_SECRET,
+            })
             return res.status(202).json({
                 "msg" : "User is authenticated!!!",
                 "user" : req.user,
@@ -27,17 +29,24 @@ async function httpPostLogin(req, res) {
     }
 }
 
-async function httpPostLogout(req,res){
+async function httpGetLogout(req,res){
     try {
         return req.logout(function(err) {
             if (err) return res.status(400).json({"error": err });
-            res.status(202).json({
+            res.clearCookie("token");
+            return res.status(202).json({
                 "msg" : "user is logged out!!!"
             });
         });
     } catch (err) {
         return res.status(400).json({"err" : err})
     }
+}
+
+async function httpPostGoogleLogin(req,res){
+    console.log("google authtication successful.");
+    req.isAuthenticated() = true;
+    return res.redirect('/secret')
 }
 
 function httpGetSignin(req, res) {
@@ -62,32 +71,30 @@ async function httpPostSignin(req, res) {
 
 async function httpPostProfile(req,res){
     try {
-        jwt.verify(req.token,secretKey,(err,authData)=>{
+        const token = req.token
+        jwt.verify(token,secretKey,(err,authData)=>{
             if(err) return res.status(400).json({"error":"invalid token"})
             else{
                 return res.status(202).json({"success": "profile accessed!!!","authData":authData})
             }
         })
-    } catch (err) {
+    } catch(err) {
         return res.status(400).json({"err" : err})
     }
 }
 
 function verifyJwtToken(req,res,next) {
-    console.log("got here!!!");
-    const bearerHeader = req.headers['authorization'];
-    if(typeof(bearerHeader)!=undefined){
-        const bearer = bearerHeader.split(" ");
-        const token = bearer[1];
-        req.token = token;
+    const token = req.cookies.jwtToken;
+    if(typeof(token)!=undefined){
+        req.token = token;   
         next();
-
     }else{
         return res.status(400).json({
             "error" : "Token is not valid."
         })
     }
 }
+
 
 function checkUser(req,res,next){
     console.log(req.user);
@@ -98,9 +105,10 @@ function checkUser(req,res,next){
 module.exports = {
     httpGetLogin,
     httpPostLogin,
-    httpPostLogout,
+    httpGetLogout,
     httpGetSignin,
     httpPostSignin,
+    httpPostGoogleLogin,
     verifyJwtToken,
     httpPostProfile,
     checkUser,

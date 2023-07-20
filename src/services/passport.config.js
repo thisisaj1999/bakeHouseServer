@@ -9,7 +9,7 @@ function intitalizePassport(passport){
       try {
         const user = await User.findOne({ username: username });
         if (!user) { return done(null, false); }
-        if (await bcrypt.compare(password, user.password)) return done(null, user)
+        if ( bcrypt.compare(password, user.password)) return done(null, user)
         else { return done(null, false); }
 
       } catch (err) {
