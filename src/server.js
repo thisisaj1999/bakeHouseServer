@@ -15,7 +15,7 @@ const server = http.createServer(app)
 async function startServer(){
     await connectDB();
     server.listen(PORT, () => {
-        console.log(`server is running on port:${PORT}`);
+        console.log(`server is running on http://localhost:${PORT}/`);
     })
 }
 
