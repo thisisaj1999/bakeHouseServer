@@ -5,7 +5,7 @@ extends:[
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
 ],
-parseOption:{
+parseOptions:{
     ecmaVersion:2018,
     sourceType:"module"
 },
