@@ -2,7 +2,7 @@ import {cleanEnv,str,port} from "envalid";
 
 
 function validateEnv():void{
-    console.log('accessedddd')
+   
 cleanEnv(process.env, {
    
     MONGO_USERNAME:str(),
