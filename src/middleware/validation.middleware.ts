@@ -21,7 +21,7 @@ function validationMiddleware(schema:Joi.Schema):RequestHandler
                 req.body,
                 validationOptions
             );
-            req.body =value;
+            req.body = value;
             next();
         }catch(e){
             const errors: string[] =[];
