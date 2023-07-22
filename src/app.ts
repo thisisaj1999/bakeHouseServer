@@ -34,7 +34,7 @@ class App{
 
    private initialiseController(controllers: Controller[]):void{
     controllers.forEach((controller : Controller) => {
-       this.express.use('/api' , controller.route)
+       this.express.use('/api' , controller.router)
     });
 }
 
@@ -49,8 +49,8 @@ private initialiseDataBaseConnection():void{
 
 
 public listen():void{
-    this.express.listen(this.port,()=>{
-        console.log(`App listening on port : ${this.port}`);
+    this.express.listen(5000,()=>{
+        console.log(`App listening on port : ${5000}`);
     })
 }
 
