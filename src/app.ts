@@ -49,8 +49,8 @@ private initialiseDataBaseConnection():void{
 
 
 public listen():void{
-    this.express.listen(5000,()=>{
-        console.log(`App listening on port : ${5000}`);
+    this.express.listen(this.port,()=>{
+        console.log(`App listening on port : ${this.port}`);
     })
 }
 
