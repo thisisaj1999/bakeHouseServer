@@ -5,7 +5,7 @@
    [Repo Link](https://github.com/thisisaj1999/bakeHouseRepo.git)
 
    ```Bash
-   git clone https://github.com/thisisaj1999/bakeHouseRepo.git
+   git clone https://github.com/thisisaj1999/bakeHouseServer.git
    ```
 
 2. After taking clone take fresh pull from main branch 
