@@ -6,7 +6,7 @@ interface Controller{
 
 }
 
-export default Router;
+export default Controller;
 
 
 
