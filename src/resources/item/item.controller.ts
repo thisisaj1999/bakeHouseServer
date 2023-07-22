@@ -8,16 +8,18 @@ import ItemService from "./item.service";
 
 class ItemController implements Controller {
     public path = '/items';
-    public router =Router();
+    public router = Router();
     private ItemService = new ItemService()
     constructor(){
         this.initialiseRoutes();
     }
 
     private initialiseRoutes():void{
-          this.router.post(`${this.path}`),
-          validationMiddleware(validate.create);
-          this.create
+          this.router.post(`${this.path}` ,
+          validationMiddleware(validate.create),
+          this.create ,
+          );
+          
     }
 
 
