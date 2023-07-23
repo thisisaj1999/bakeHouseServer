@@ -30,6 +30,20 @@ class ItemService{
         }
      }
 
+
+     /**
+      * Fetching the single item by id
+      */
+     public async getItemById(id:string):Promise<Item | null>{
+        try{
+            const item = await this.item.findById(id);
+            return item;
+        }catch(err){
+          throw new Error('Unable to fetch the item you searched');
+        }
+     }
+     
+
 }
 
 export default ItemService;

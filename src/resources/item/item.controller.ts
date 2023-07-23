@@ -21,6 +21,7 @@ class ItemController implements Controller {
           );
 
           this.router.get(`${this.path}/all`, this.getAllItems);
+          this.router.get(`${this.path}/:id`, this.getItemById);
           
     }
 
@@ -46,6 +47,23 @@ class ItemController implements Controller {
            res.status(500).json({err:'Internal server error'}); 
         }
     }
+
+    private getItemById = async(req:Request,res:Response,next:NextFunction):Promise<void>=>{
+        try{
+           const itemId = req.params.id;
+           const item= await this.ItemService.getItemById(itemId);
+           
+           if(item){
+                res.status(200).json(item);
+           }else{
+                res.status(400).json({message:"Item not found"})
+           }
+           
+        }catch(error){
+            res.status(500).json({error:"Internal server error"});
+        }
+    }
+    
 
 
 }
