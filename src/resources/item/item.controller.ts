@@ -4,6 +4,7 @@ import HttpException from "../..//utils/exceptions/http.exception";
 import validationMiddleware from "../../middleware/validation.middleware";
 import validate from "./item.validation";
 import ItemService from "./item.service";
+import { PaginatedFunction } from "./item.interface";
 
 
 class ItemController implements Controller {
@@ -41,8 +42,15 @@ class ItemController implements Controller {
 
     private getAllItems= async(req:Request , res : Response , next :NextFunction): Promise<Response | void> => {
         try{
+
+           const page= parseInt(req.query.page as string) || 1;
+           const pageSize = parseInt(req.query.pageSize as string) || 3; 
+          // getting all the items
            const items= await this.ItemService.getAllItems();
-           res.status(200).json(items);
+           //adding items to pagination 
+            const paginatedItems = PaginatedFunction(items,page,pageSize);
+                 
+            res.status(200).json(paginatedItems);
         }catch(err){
            res.status(500).json({err:'Internal server error'}); 
         }
