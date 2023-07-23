@@ -23,6 +23,7 @@ class ItemController implements Controller {
 
           this.router.get(`${this.path}/all`, this.getAllItems);
           this.router.get(`${this.path}/:id`, this.getItemById);
+          this.router.get(`${this.path}/category/:category`,this.getItemsByCategory);
           
     }
 
@@ -32,8 +33,8 @@ class ItemController implements Controller {
         req :Request,res:Response,next:NextFunction
     ):Promise<Response | void> =>{
          try{
-            const{title,description,price,rating} = req.body;
-            const item = await this.ItemService.create(title,description,price,rating);
+            const{title,description,price,rating,category} = req.body;
+            const item = await this.ItemService.create(title,description,price,rating,category);
             res.status(200).json({item})
          }catch(e){
             next(new HttpException(400,'Cannot add item now'))
@@ -70,6 +71,19 @@ class ItemController implements Controller {
         }catch(error){
             res.status(500).json({error:"Internal server error"});
         }
+    }
+
+
+    private getItemsByCategory=async(req:Request,res:Response):Promise<void>=>{
+           try{
+            const category= req.params.category;
+            const itemsWithCategory = await this.ItemService.getItemByCategory(category);
+            
+            res.status(200).json({itemsWithCategory});
+
+           }catch(err){
+             res.status(500).json({err:"Internal Server Error"});
+           }
     }
     
 

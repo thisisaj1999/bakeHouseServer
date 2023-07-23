@@ -6,6 +6,7 @@ export default interface Item extends Document{
     description : string,
     price : number,
     rating : number,
+    category:string,
 }
 
 
