@@ -19,6 +19,8 @@ class ItemController implements Controller {
           validationMiddleware(validate.create),
           this.create ,
           );
+
+          this.router.get(`${this.path}/all`, this.getAllItems);
           
     }
 
@@ -29,12 +31,23 @@ class ItemController implements Controller {
     ):Promise<Response | void> =>{
          try{
             const{title,description,price,rating} = req.body;
-            const post = await this.ItemService.create(title,description,price,rating);
-            res.status(200).json({post})
+            const item = await this.ItemService.create(title,description,price,rating);
+            res.status(200).json({item})
          }catch(e){
             next(new HttpException(400,'Cannot add item now'))
          }
     }
+
+    private getAllItems= async(req:Request , res : Response , next :NextFunction): Promise<Response | void> => {
+        try{
+           const items= await this.ItemService.getAllItems();
+           res.status(200).json(items);
+        }catch(err){
+           res.status(500).json({err:'Internal server error'}); 
+        }
+    }
+
+
 }
 
 export default ItemController;

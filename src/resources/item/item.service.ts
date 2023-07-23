@@ -17,6 +17,19 @@ class ItemService{
                 throw new Error('Unable to add product now')
                } 
 }
+
+     /**
+                * Fetching all the items 
+                */
+     public async getAllItems(): Promise<Item[]>{
+        try{
+            const items = await this.item.find();
+            return items
+        }catch(err){
+             throw new Error('Unable to Fetch all items')
+        }
+     }
+
 }
 
 export default ItemService;
