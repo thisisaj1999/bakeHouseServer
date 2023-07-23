@@ -10,6 +10,6 @@ validateEnv();
 
 
 
-const app = new App([new ItemController],Number(process.env.port));
+const app = new App([new ItemController],Number(process.env.PORT));
 
 app.listen();
