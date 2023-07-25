@@ -8,6 +8,7 @@ import validationMiddleware from "../../middleware/validation.middleware";
 
 class UserController implements Controller {
     public path= '/users'
+    public userPath= '/user'
     public router = Router();
     private UserService = new UserService();
 
@@ -22,7 +23,7 @@ class UserController implements Controller {
     this.router.post(`${this.path}/login`, validationMiddleware(validate.login) , this.login);
 
 
-    this.router.get(`${this.path}`, authenticated , this.getUser)
+    this.router.get(`${this.userPath}`, authenticated , this.getUser)
 
    }
 
