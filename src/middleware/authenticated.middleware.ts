@@ -4,6 +4,7 @@ import UserModel from '../resources/User/user.model';
 import Token from '../utils/interfaces/token.interface';
 import HttpException from "../utils/exceptions/http.exception";
 import jwt , {verify}from 'jsonwebtoken';
+import passport = require("passport");
 
 
 
@@ -13,36 +14,17 @@ async function authenticatedMiddleware(
     res: Response,
     next: NextFunction
 ): Promise<Response | void> {
-    const bearer = req.headers.authorization;
-
-    if (!bearer || !bearer.startsWith('Bearer ')) {
-        return next(new HttpException(401, 'Unauthorised'));
-    }
-
-    const accessToken = bearer.split('Bearer ')[1].trim();
-    try {
-        const payload: Token | jwt.JsonWebTokenError = await token.verifyToken(
-            accessToken
-        );
-
-        if (payload instanceof jwt.JsonWebTokenError) {
-            return next(new HttpException(401, 'Unauthorised'));
+   passport.authenticate('local',{session:false},async (err: any,user: any,info: any)=>{
+      try{
+        if(err || !user){
+            return res.status(401).json({error:'Unauthorized'})
         }
-
-        const user = await UserModel.findById(payload.id)
-            .select('-password')
-            .exec();
-
-        if (!user) {
-            return next(new HttpException(401, 'Unauthorised'));
-        }
-
-        req.user = user;
-
+        req.user=user;
         return next();
-    } catch (error) {
-        return next(new HttpException(401, 'Unauthorised'));
-    }
+      }catch(error){
+        return next(error)
+      }    
+})(req,res,next);
 }
 
 export default authenticatedMiddleware;
