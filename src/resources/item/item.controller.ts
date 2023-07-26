@@ -23,7 +23,7 @@ class ItemController implements Controller {
 
           this.router.get(`${this.path}/all`, this.getAllItems);
           this.router.get(`${this.path}/:id`, this.getItemById);
-          this.router.get(`${this.path}/category/:category`,this.getItemsByCategory);
+          this.router.get(`${this.path}`,this.getItemsByCategory);
           
     }
 
@@ -76,7 +76,16 @@ class ItemController implements Controller {
 
     private getItemsByCategory=async(req:Request,res:Response):Promise<void>=>{
            try{
-            const category= req.params.category;
+            const category= req.query.category as string;
+
+             //check if param avail 
+             if (!category) {
+                res.status(400).json({ error: "Category parameter is missing." });
+                return ;
+              }
+               
+              console.log(category,"Recieved")
+
             const itemsWithCategory = await this.ItemService.getItemByCategory(category);
             
             res.status(200).json({itemsWithCategory});
