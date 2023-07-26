@@ -3,12 +3,14 @@ import Controller from "../../utils/interfaces/controller.interface";
 import HttpException from "../..//utils/exceptions/http.exception";
 import validate from './user.validation';
 import UserService from "./user.service";
-import authenticated from "../../middleware/authenticated.middleware";
+
 import validationMiddleware from "../../middleware/validation.middleware";
+import passport from "passport";
+
 
 class UserController implements Controller {
-    public path= '/users'
-    public userPath= '/user'
+    public path= '/user'
+    
     public router = Router();
     private UserService = new UserService();
 
@@ -20,10 +22,11 @@ class UserController implements Controller {
     
     this.router.post(`${this.path}/register`, validationMiddleware(validate.register), this.register);
      
-    this.router.post(`${this.path}/login`, validationMiddleware(validate.login) , this.login);
+    this.router.post(`${this.path}/login`, validationMiddleware(validate.login), this.login);
 
 
-    this.router.get(`${this.userPath}`, authenticated , this.getUser)
+    this.router.get(`${this.path}/:id`, this.getUser)
+    this.router.get(`${this.path}/:id/logout`,this.logout)
 
    }
 
@@ -31,14 +34,10 @@ class UserController implements Controller {
    private register = async (
     req:Request,
     res:Response,
-    next:NextFunction):Promise<Response | void> =>{
+    next:NextFunction) =>{
         try{
-          const {name , email , password} = req.body;
-
-          const token = await this.UserService.register(name,email,password);
-
-          res.status(201).json({token});
-
+          await this.UserService.register(req);
+          res.status(200).json({ message: "Registration successful." });
         }catch(err){
              next(new HttpException(400,err.message))
         }
@@ -50,26 +49,45 @@ class UserController implements Controller {
             ,res:Response
             ,next:NextFunction):Promise<Response | void> =>{
               try{
-                  const{email , password} = req.body;
+                  
+                  await this.UserService.login(req);
 
-                  const token = await this.UserService.login(email,password);
-
-                  res.status(200).json({token});
+                  res.status(200).json(req.user);
               }catch(err){
                 next(new HttpException(400 , err.message));
               }
             }
 
-      private getUser = (
-        req:Request
-        ,res:Response
-        ,next:NextFunction): Response|void=>{
-          if(!req.user) {return next(new HttpException(404, 'User not logged in'));}
+            private getUser = async (req: Request, res: Response, next: NextFunction) => {
+              try {
+                  const userId = req.params.id;
+      
+                  
+                  const user = await this.UserService.getUserById(userId);
+      
+                  if (!user) {
+                      return res.status(404).json({ error: "User not found." });
+                  }
+      
+                  
+                  res.status(200).json({ user: user });
+              } catch (err) {
+                  console.error(err);
+                  res.status(500).json({ error: "Unable to get user." });
+              }
+          };  
 
-          res.status(200).json({user:req.user})
-        }   
-
-
+          private logout = async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                await this.UserService.logout(req, next);
+                res.status(200).json({ message: "Logout successful." });
+                
+            } catch (err) {
+                console.error(err);
+                res.status(500).json({ error: "Unable to logout." });
+            }
+        };
+        
 }
 
 

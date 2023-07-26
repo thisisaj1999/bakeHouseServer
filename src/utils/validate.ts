@@ -9,7 +9,8 @@ cleanEnv(process.env, {
     MONGO_PATH:str(),
     MONGO_PASSWORD:str(),
     PORT:port({default:3000}),
-    JWT_SECRET_KEY:str(),
+    SECRET:str()
+    
 })
 }
 

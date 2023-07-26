@@ -1,5 +1,7 @@
+import passport from "passport";
 import UserModel from "./user.model";
-import token from '../../utils/token';
+import { Request , NextFunction ,Response} from "express";
+
 
 class UserService{
     private user = UserModel;
@@ -7,20 +9,31 @@ class UserService{
     /**
      * Registering a new User
      */
-    public async register(
-        name : string,
-        email:string,
-        password:string
-    ):Promise<string |Error>{
-       try {
-          const user = await this.user.create({name,email,password})
-
-          const accessToken = token.createToken(user);
-          return accessToken;
-       } catch(err){
-           console.log(err.message);
-           throw new Error('Unable to create a user');
-       }
+    public async register(req: Request): Promise<void> {
+        return new Promise((resolve, reject) => {
+            
+            passport.authenticate("local-signup", (err: any, user: Express.User, info: any) => {
+                if (err) {
+                    
+                    console.error(err);
+                    reject(new Error("An error occurred during registration."));
+                } else if (!user) {
+                    
+                    reject(new Error("Failed to register user."));
+                } else {
+                    
+                    req.login(user, (err) => {
+                        if (err) {
+                            console.error(err);
+                            reject(new Error("An error occurred during login after registration."));
+                        } else {
+                            
+                            resolve();
+                        }
+                    });
+                }
+            })(req);
+        });
     }
 
      
@@ -29,25 +42,70 @@ class UserService{
      */
 
     public async login(
-        email:string,
-        password:string
-    ):Promise<string |Error >{
-      try{
-        const user = await this.user.findOne({email});
-
-        if(!user) throw new Error('User not found , Please Register first');
-
-        if(await user.isValidPassword(password)){
-            return token.createToken(user);
-        }else{
-            throw new Error('Invalid Credentials')
-        }
-      }catch(err){
-           console.log(err.message);
-          throw new Error('Unable to login')
-      }
+        req:Request
+    ):Promise<void>{
+        return new Promise((resolve, reject) => {
+           
+            passport.authenticate("local", (err:any, user:any, info:any) => {
+                if (err) {
+                    
+                    console.error(err);
+                    reject(new Error("An error occurred during login."));
+                } else if (!user) {
+                    
+                    reject(new Error("Invalid credentials."));
+                } else {
+                   
+                    req.login(user, (err: any) => {
+                        if (err) {
+                            console.error(err);
+                            reject(new Error("An error occurred during login."));
+                        } else {
+                            resolve();
+                        }
+                    });
+                }
+            })(req);
+        });
     }
+
+
+    /** 
+    * LogOut User 
+    */
+    public async logout(req: Request , next:NextFunction): Promise<void> {
+        try {
+            req.logout(function(err){
+                if(err){return next(err);}
+                
+            }); 
+        } catch (err) {
+            console.error(err);
+            throw new Error("Unable to logout user.");
+        }
+    }
+
+    /**
+     * Get User
+     */
+     
+    public async getUserById(id: string): Promise<any> {
+        try {
+            const user = await this.user.findById(id).select("-password").exec();
+            return user;
+        } catch (err) {
+            console.error(err);
+            throw new Error("Unable to get user by ID.");
+        }
+    }
+
+
 }
+
+
+
+
+
 
 
 export default UserService;

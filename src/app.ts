@@ -10,6 +10,7 @@ import ErrorMiddleware from "./middleware/error.middleware";
 import passport from 'passport';
 import './utils/passport.config';
 import UserController from "./resources/User/user.controller";
+import session  , {SessionOptions}from "express-session";
 
 
 class App{
@@ -33,6 +34,20 @@ class App{
         this.express.use(express.json());
         this.express.use(express.urlencoded({extended:false}));
         this.express.use(compression());
+         
+        const sessionOptions: SessionOptions = {
+            secret: `${process.env.SECRET}`,
+            resave: false,
+            saveUninitialized: false,
+            cookie: {
+              secure: false,
+              httpOnly: true,
+              maxAge: 24 * 60 * 60 * 1000, // 24 hours
+            },
+          };
+      
+          this.express.use(session(sessionOptions));
+
         this.express.use(passport.initialize());
    }
 
