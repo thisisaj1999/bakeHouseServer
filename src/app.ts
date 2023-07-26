@@ -7,9 +7,6 @@ import helmet from "helmet";
 //local imports 
 import Controller from "./utils/interfaces/controller.interface";
 import ErrorMiddleware from "./middleware/error.middleware";
-import passport from 'passport';
-import './utils/passport.config';
-import UserController from "./resources/User/user.controller";
 
 
 class App{
@@ -33,20 +30,13 @@ class App{
         this.express.use(express.json());
         this.express.use(express.urlencoded({extended:false}));
         this.express.use(compression());
-        this.express.use(passport.initialize());
    }
 
    private initialiseController(controllers: Controller[]):void{
     controllers.forEach((controller : Controller) => {
        this.express.use('/api' , controller.router)
-    
     });
-     
-    const userController = new UserController();
-    this.express.use('/api/users',userController.router);
-
 }
-
 
 private initialiseErrorHandling():void{
     this.express.use(ErrorMiddleware);
