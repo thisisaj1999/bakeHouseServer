@@ -21,6 +21,7 @@ class UserController implements Controller {
     this.router.post(`${this.path}/login`, validationMiddleware(validate.login) , this.login);
     this.router.get(`${this.path}`, authenticated , this.getUser)
     this.router.post(`${this.path}/:userId/cart` , this.addItemToCart );
+    this.router.get(`${this.path}/:userId/cart` , this.getCart)
 
    }
 
@@ -85,6 +86,18 @@ class UserController implements Controller {
         next(new HttpException(500,"Error adding item to Cart."))  
         }
       }
+
+     public getCart = async(
+      req:Request
+        ,res:Response
+        ,next:NextFunction
+     ):Promise<void>=>{
+        const userId = req.params.userId;
+
+        const cartItems = await this.UserService.getCartItems(userId);
+
+        res.status(200).json(cartItems);
+     } 
 
 
 }

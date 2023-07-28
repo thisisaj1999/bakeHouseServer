@@ -75,6 +75,21 @@ class UserService{
     }
    }
 
+/**
+ * GetCart items 
+ */
+public async getCartItems(userId : string):Promise<any[]>{
+try{
+    const user = await UserModel.findById(userId);
+    if(!user) throw new Error('User not Found');
+
+    return user.cart
+}catch(err){
+    throw new Error("Error Fetching cart Item")
+}
+
+}
+
 
 
 }
