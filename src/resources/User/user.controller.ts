@@ -5,6 +5,11 @@ import validate from './user.validation';
 import UserService from "./user.service";
 import authenticated from "../../middleware/authenticated.middleware";
 import validationMiddleware from "../../middleware/validation.middleware";
+import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import User from "./user.interface";
+import configurePassport from "../../utils/passport.config";
+
 
 class UserController implements Controller {
     public path= '/users'
@@ -12,8 +17,14 @@ class UserController implements Controller {
     private UserService = new UserService();
 
     constructor(){
-        this.initialiseRoutes();
+      configurePassport();   
+      this.initialiseRoutes();
+        
     }
+
+
+
+   
 
    private initialiseRoutes(){
     
@@ -21,7 +32,15 @@ class UserController implements Controller {
     this.router.post(`${this.path}/login`, validationMiddleware(validate.login) , this.login);
     this.router.get(`${this.path}`, authenticated , this.getUser)
     this.router.post(`${this.path}/:userId/cart` , this.addItemToCart );
-    this.router.get(`${this.path}/:userId/cart` , this.getCart)
+    this.router.get(`${this.path}/:userId/cart` , this.getCart);
+    this.router.get(`${this.path}/auth/google`,passport.authenticate('google', { scope: ['profile', 'email'] }));
+    this.router.get(`${this.path}/auth/google/callback`, passport.authenticate('google', { failureRedirect: `www.youtube.com////to be replaced` }), (req, res) => {
+     
+      res.redirect('www.google.com ///// to be replaced ');
+    });
+
+    
+
 
    }
 

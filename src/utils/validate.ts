@@ -10,6 +10,9 @@ cleanEnv(process.env, {
     MONGO_PASSWORD:str(),
     PORT:port({default:3000}),
     JWT_SECRET_KEY:str(),
+    GOOGLE_CLIENT_ID:str(),
+    GOOGLE_CLIENT_SECRET:str()
+
 })
 }
 
