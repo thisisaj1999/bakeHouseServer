@@ -47,6 +47,51 @@ class UserService{
           throw new Error('Unable to login')
       }
     }
+
+
+   /**
+    * Adding Item to cart
+    */
+   public async addToCart(userId:string , itemID:string,quantity:number) {
+    try{
+        const user = await UserModel.findById(userId);
+
+        if(!user) throw new Error("User not Found");
+        const existingItem = user.cart.find((cartItem) => cartItem.itemID.toString() ===itemID);
+
+        if(existingItem){
+            existingItem.quantity = Number (existingItem.quantity) + quantity  ;
+        }
+        else{
+            user.cart.push({itemID , quantity})
+        }
+
+        await user.save()
+
+        return user;
+
+    }catch(err){
+        throw new Error("Error adding item to cart.");
+    }
+   }
+
+/**
+ * GetCart items 
+ */
+public async getCartItems(userId : string):Promise<any[]>{
+try{
+    const user = await UserModel.findById(userId);
+    if(!user) throw new Error('User not Found');
+
+    return user.cart
+}catch(err){
+    throw new Error("Error Fetching cart Item")
+}
+
+}
+
+
+
 }
 
 

@@ -4,9 +4,12 @@ import mongoose from "mongoose";
 import compression from "compression";
 import morgan from "morgan";
 import helmet from "helmet";
+import passport from "passport";
 //local imports 
 import Controller from "./utils/interfaces/controller.interface";
 import ErrorMiddleware from "./middleware/error.middleware";
+import session from "express-session";
+import configurePassport from "./utils/passport.config";
 
 
 class App{
@@ -17,6 +20,7 @@ class App{
         this.port=port;
         this.initialiseDataBaseConnection();
         this.initialiseMiddleware();
+        configurePassport();
         this.initialiseController(controllers);
         this.initialiseErrorHandling();
         
@@ -30,6 +34,18 @@ class App{
         this.express.use(express.json());
         this.express.use(express.urlencoded({extended:false}));
         this.express.use(compression());
+        this.express.use(
+            session({
+              secret: `${process.env.JWT_SECRET_KEY}`, 
+              resave: false,
+              saveUninitialized: false,
+            })
+          );
+      
+        this.express.use(passport.initialize());
+        this.express.use(passport.session());
+          
+
    }
 
    private initialiseController(controllers: Controller[]):void{

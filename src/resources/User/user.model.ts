@@ -1,4 +1,4 @@
-import { Schema , model } from "mongoose";
+import { Model, Schema , model } from "mongoose";
 import bcrypt from 'bcrypt';
 import User from "./user.interface";
 
@@ -14,7 +14,18 @@ const UserSchema = new Schema({
     },
     password:{
         type:String
-    }
+    },
+    cart:[
+        {
+            itemID:{
+                 type:Schema.Types.ObjectId , ref:'Item' 
+            },
+            quantity:{
+                type:Number,
+                default:1, 
+            }
+        }
+    ]
 
 },
 {timestamps:true}
